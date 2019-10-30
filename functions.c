@@ -33,7 +33,8 @@ struct node * free_list(struct node * subject)
     subject = (*subject).next;
     free(p);
   }
-  return p;
+  p = NULL;
+  return subject;
 }
 // Should take a pointer to a list as a parameter and then go through the entire list freeing each node and return a pointer to the beginning of the list (which should be NULL by then).
 
