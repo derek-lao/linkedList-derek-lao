@@ -40,7 +40,29 @@ struct node * free_list(struct node * subject)
 
 struct node * remove_node(struct node *front, int data)
 {
-
+  struct node *prev;
+  while((*front).data == data)
+  {
+    struct node *temp = front;
+    front = (*front).next;
+    free(temp);
+    temp = NULL;
+  }
+  struct node *frontMarker = front;
+  while(front)
+  {
+    prev = front;
+    front = (*front).next;
+    if((*front).data == data)
+    {
+      struct node *temp = front;
+      front = (*front).next;
+      (*prev).next = front;
+      free(temp);
+      temp = NULL;
+    }
+  }
+  return frontMarker;
 }
 // Remove the node containing data from the list pointed to by front.
 // If data is not in the list, nothing is changed.

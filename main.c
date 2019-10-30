@@ -23,7 +23,8 @@ int main()
   printf("List will be freed between the printing of this line and the printing of the next line\n");
   structPointer = free_list(structPointer);
   // printf("this version of my code actually should return the pointer to the first value in the list\n");
-
   printf("structPointer is %ld\n", structPointer);
+
+
   return 0;
 }
