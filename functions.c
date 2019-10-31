@@ -2,6 +2,12 @@
 #include<stdlib.h>
 #include "node.h"
 
+void print_list_debug(struct node * subject)
+{
+  printf("the value is %d and the pointer is %ld and the next pointer is %ld", (*subject).i, subject, (*subject).next);
+  printf("\n");
+}
+
 void print_list(struct node * subject)
 {
   while(subject)
@@ -18,6 +24,7 @@ struct node * insert_front(struct node * subject, int data)
   struct node * p = malloc(sizeof(struct node));
   (*p).i = data;
   (*p).next = subject;
+  // printf("node inserted, the value is %d, the pointer is %ld\n", data, p);
   return p;
 }
 // Should take a pointer to the existing list and the data to be added, create a new node and put it at the beginning of the list.
@@ -41,19 +48,23 @@ struct node * free_list(struct node * subject)
 struct node * remove_node(struct node *front, int data)
 {
   struct node *prev;
-  while((*front).data == data)
+  // printf("front is %ld\n", front);
+  while((*front).i == data)
   {
     struct node *temp = front;
     front = (*front).next;
     free(temp);
     temp = NULL;
   }
+  // printf("front is %ld\n", front);
   struct node *frontMarker = front;
   while(front)
   {
+    // printf("front before is %ld\n", front);
     prev = front;
     front = (*front).next;
-    if((*front).data == data)
+    // printf("got up to here\n");
+    while(front && (*front).i == data)
     {
       struct node *temp = front;
       front = (*front).next;
@@ -61,6 +72,7 @@ struct node * remove_node(struct node *front, int data)
       free(temp);
       temp = NULL;
     }
+    // printf("front after is %ld\n", front);
   }
   return frontMarker;
 }

@@ -3,6 +3,7 @@ struct node
   int i; struct node * next;
 };
 
+void print_list_debug(struct node * subject);
 void print_list(struct node * subject);
 // Should take a pointer to a node struct and print out all of the data in the list
 struct node * insert_front(struct node * subject, int data);
